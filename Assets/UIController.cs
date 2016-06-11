@@ -29,7 +29,7 @@ public class UIController : MonoBehaviour {
         {
             if (!cards[i].GetComponent<CardObject>().isBeingInteracted)
             {
-                if (cards[i].GetComponent<CardObject>().isSelected)
+                if (cards[i].GetComponent<CardObject>().isSelected && i != cards.Count -1)
                 {
                     cards[i].SetAsLastSibling();
                     offset++;
@@ -53,14 +53,16 @@ public class UIController : MonoBehaviour {
         {
             if (CanMove(card))
             {
+                Debug.Log("Can Move");
                 RemoveCard(card);
             }
             else
             {
+                Debug.Log("Can NOT Move");
                 return;
             }
         }
-
+        Debug.Log("Sorting..");
         cards.Add(card);
         cards.Sort((x, y) =>
         {
@@ -84,7 +86,7 @@ public class UIController : MonoBehaviour {
     {
         float amountToRemove = (Screen.width - Screen.width * 0.4f) / (cards.Count + 1);
 
-        return Vector3.Distance(card.transform.position, new Vector3((Screen.width - Screen.width * 0.8f) + amountToRemove * (GetCardID(card) + 1), card.position.y, 0)) > 50;
+        return Vector3.Distance(card.transform.position, new Vector3((Screen.width - Screen.width * 0.8f) + amountToRemove * (GetCardID(card) + 1), card.position.y, 0)) > 100;
 
     }
 

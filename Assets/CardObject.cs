@@ -14,10 +14,12 @@ public class CardObject : MonoBehaviour {
     #region UI Elements
     RectTransform rect;
     Image image;
-    Text text;
+    public Text titleText;
+    public Text descriptionText;
     Slider starValue;
     #endregion
     EventSystem eventSystem;
+    GameController controller;
 
     Card card;
 
@@ -25,13 +27,14 @@ public class CardObject : MonoBehaviour {
     {
         rect = GetComponent<RectTransform>();
         image = transform.GetChild(0).GetComponent<Image>();
-        text = transform.GetComponentInChildren<Text>();
+
         starValue = transform.GetComponentInChildren<Slider>();
         eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 
         this.card = card;
         image.sprite = card.card_image;
-        text.text = "<b>" + card.name.Replace('_', ' ') + "</b>\n\n" + card.description;
+        titleText.text = card.name.Replace('_', ' ');
+        descriptionText.text = card.description;
         starValue.value = card.starValue;
         UIController.instance.AddCard((RectTransform)transform);
     }
@@ -75,7 +78,7 @@ public class CardObject : MonoBehaviour {
         var currentPosition = rect.position;
         transform.parent = UIController.instance.canvas;
 
-        if (Vector2.Distance(new Vector2(0, currentPosition.y), new Vector2(0, UIController.instance.CardHolder.position.y)) > 100)
+        if (Vector2.Distance(new Vector2(0, rect.position.y), new Vector2(0, UIController.instance.CardHolder.position.y)) > 50)
         {
             UIController.instance.RemoveCard(rect);
         }

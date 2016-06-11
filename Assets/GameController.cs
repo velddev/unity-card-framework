@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour {
     public GameObject baseCard;
     CardLoader cardLoader;
 
+    public CardPlaySlot[] places;
+
     public void Start()
     {
         cardLoader = GetComponent<CardLoader>();
@@ -23,5 +25,10 @@ public class GameController : MonoBehaviour {
         GameObject g = (GameObject)Instantiate(baseCard, Vector3.zero, Quaternion.identity);
         g.transform.SetParent(canvas);
         g.GetComponent<CardObject>().Load(cardLoader.allCards[Random.Range(0, cardLoader.allCards.Count)]);
+    }
+
+    public void PlaceCard(Card card)
+    {
+
     }
 }
