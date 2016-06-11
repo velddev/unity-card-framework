@@ -32,5 +32,6 @@ public class CardLoader : MonoBehaviour {
         allCards.Add(new UnitCard("Demon", 3, "The gift from the gods you needed to win this match", 17, 2, null, null));
         allCards.Add(new UnitCard("Wazzlo", 2, "Some wizard guy from another realm, idunno.", 10, 10, null, null));
         allCards.Add(new UnitCard("Sorcerer", 5, "Long lost from another world, fights in an ever lasting battle", 5, 30, null, null));
+        allCards.Add(new UnitCard("Snail", 1, "...or a frog?", 1, 5, null, null));
     }
 }
